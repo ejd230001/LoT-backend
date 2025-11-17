@@ -5,8 +5,6 @@ export const apiRouter = express.Router()
 
 apiRouter.get("/question", async (req, res) => {
     console.log("request received");
-    console.log(req.query)
-    console.log(req.params)
     const questionObject = await getQuestionObject(req.query, req.params);
     const { question, answer } = await formQuestionAndAnswer(questionObject);
     const wrongAnswers = await getWrongAnswers(questionObject, answer);
@@ -20,8 +18,6 @@ apiRouter.get("/question", async (req, res) => {
 
 apiRouter.get("/question/:diff", async (req, res) => {
     console.log("request received");
-    console.log(req.query)
-    console.log(req.params)
     const questionObject = await getQuestionObject(req.query, req.params);
     const { question, answer } = await formQuestionAndAnswer(questionObject);
     const wrongAnswers = await getWrongAnswers(questionObject, answer);

@@ -27,7 +27,7 @@ export async function getQuestionObject(queryParams, pathParams) {
         }
     } else if (hasQueryParam) {
         if (typeof queryParams.category == "string") {
-            questionQuery += ` AND category='${queryParams.category}'`;
+            questionQuery += ` WHERE category='${queryParams.category}'`;
         } else {
             let cur = 0;
 
@@ -45,7 +45,6 @@ export async function getQuestionObject(queryParams, pathParams) {
     }
 
     questionQuery += ` ORDER BY RANDOM() LIMIT 1;`;
-    console.log(questionQuery);
     const questionQueryResult = await pool.query(questionQuery);
 
     return questionQueryResult.rows[0];
